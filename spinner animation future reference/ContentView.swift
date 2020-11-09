@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var spinMedium = false
     var body: some View {
        Circle()
         .trim(from: 1/2, to: 1.0)
         .stroke(style: StrokeStyle(lineWidth: 6, lineCap: .round, lineJoin: .round))
         .foregroundColor(.blue)
-        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(width: 90, height: 90)
+        .rotationEffect(.degrees(spinMedium ? 360 : 0))
+        .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+        .onAppear {
+            self.spinMedium = true
+        }
     }
 }
 
